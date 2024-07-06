@@ -1,34 +1,30 @@
-# This is ".github/workflows/gh-pages.yml" file.
-# This is an EXAMPLE of "GitHub Actions Workflow file".
-
-name: github pages
-
+name: Deploy to GitHub Pages
 on:
+  workflow_dispatch:    
   push:
-    branches:
-      - main
-
+    branches: [ main ]
 jobs:
-  deploy:
+  deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the code
-      - uses: actions/checkout@v4
-
-      # Install .NET Core SDK
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-
-      # Publish the site
-      - name: Publish
-        run: dotnet publish FhrWasm.sln -c:Release -o:publish -p:GHPages=true
-
-      # Deploy the site
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: publish/wwwroot
-          force_orphan: true
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        # https://github.com/actions/setup-dotnet#supported-version-syntax
+        dotnet-version: '8.x'
+    - name: Install .NET wasm-tools
+      run: dotnet workload install wasm-tools
+    - name: Publish
+      run: dotnet publish FhrWasm/FhrWasm.csproj -c Release -o release --nologo
+    - name: Change base href in index.html
+      run: sed -i 's/<base href="\/" \/>/<base href="\/fhrwasm\/" \/>/g' release/wwwroot/index.html
+    - name: Copy index.html to 404.html
+      run: cp release/wwwroot/index.html release/wwwroot/404.html
+    - name: Add .nojekyll file
+      run: touch release/wwwroot/.nojekyll
+    - name: Commit wwwroot to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.6.3
+      with:
+        BRANCH: gh-pages
+        FOLDER: release/wwwroot
