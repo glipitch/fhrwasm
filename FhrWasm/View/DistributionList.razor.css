@@ -1,17 +1,15 @@
-﻿
-tr {
+﻿tr {
     height: 5rem;
 }
 
 td {
     font-size: 1.5rem;
 }
+
     td:first-child {
-        color: blue;
         text-align: start;
     }
 
     td:last-child {
-        color: greenyellow;
         text-align: end;
     }

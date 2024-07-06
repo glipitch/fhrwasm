@@ -1,6 +1,4 @@
-﻿
-
-using FhrWasm.Model;
+﻿using FhrWasm.Model;
 
 using System.Text.Json;
 
@@ -20,6 +18,7 @@ public class Api(IHttpClientFactory httpClientFactory)
 
         return root.Establishments;
     }
+
     public async Task<Dictionary<string, decimal>> GetRatings(int authorityId)
     {
         var establishments = await GetEstablishments(authorityId);

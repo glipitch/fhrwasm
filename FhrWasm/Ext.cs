@@ -1,5 +1,7 @@
 ﻿using FhrWasm.Model.Configuration;
+
 namespace FhrWasm;
+
 public static class Ext
 {
     public static IServiceCollection AddRatingsDistribution(this IServiceCollection services, IConfiguration configuration)
@@ -17,6 +19,8 @@ public static class Ext
         services.AddSingleton<Api>();
         return services;
     }
+
     public static decimal AsPercent(this decimal input) => input * 100;
+
     public static decimal AsFractionOf(this decimal input, decimal denominator) => input / denominator;
 }

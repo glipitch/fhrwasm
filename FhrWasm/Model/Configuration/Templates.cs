@@ -1,5 +1,4 @@
-﻿using FhrWasm.Model;
+﻿namespace FhrWasm.Model.Configuration;
 
-namespace FhrWasm.Model.Configuration;
-
-public class Templates : Dictionary<SchemeTypes, Template> { }
+public class Templates : Dictionary<SchemeTypes, Template>
+{ }

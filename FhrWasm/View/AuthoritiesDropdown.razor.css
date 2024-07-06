@@ -1,11 +1,12 @@
-﻿select{
+﻿select {
     font-size: 1.5rem;
-    background:inherit;
-    color:white;
+    background: inherit;
+    color: white;
 }
+
 option {
-    color:white;
-    background:inherit;
-    appearance:none;
-    background-color:dimgray;
+    color: white;
+    background: inherit;
+    appearance: none;
+    background-color: dimgray;
 }
