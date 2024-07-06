@@ -1,0 +1,37 @@
+/* /View/AuthoritiesDropdown.razor.rz.scp.css */
+select[b-yar7jum7n4] {
+    font-size: 1.5rem;
+    background: inherit;
+    color: white;
+}
+
+option[b-yar7jum7n4] {
+    color: white;
+    background: inherit;
+    appearance: none;
+    background-color: dimgray;
+}
+/* /View/DistributionList.razor.rz.scp.css */
+tr[b-rdtcnagmsq] {
+    height: 5rem;
+}
+
+td[b-rdtcnagmsq] {
+    font-size: 1.5rem;
+}
+
+    td:first-child[b-rdtcnagmsq] {
+        text-align: start;
+    }
+
+    td:last-child[b-rdtcnagmsq] {
+        text-align: end;
+    }
+/* /View/Home.razor.rz.scp.css */
+.container[b-8cj9ipbowy] {
+    max-width: 50rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

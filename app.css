@@ -1,0 +1,7 @@
+body {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    background-color: dimgrey;
+    justify-content: center;
+    color: white;
+}
