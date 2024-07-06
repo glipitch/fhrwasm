@@ -27,7 +27,7 @@ jobs:
 
       # Deploy the site
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: publish/wwwroot
