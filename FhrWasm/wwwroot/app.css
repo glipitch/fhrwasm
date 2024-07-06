@@ -1,7 +1,9 @@
 body {
+    --background-color: #353935; /*onyx*/
+    --color: white;
     display: flex;
     font-family: 'Roboto', sans-serif;
-    background-color: dimgrey;
     justify-content: center;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--color);
 }
