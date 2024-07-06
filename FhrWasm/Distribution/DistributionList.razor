@@ -1,0 +1,37 @@
+@namespace FhrWasm.RatingsApi
+@using FhrWasm.Distribution
+@using FhrWasm.Distribution.Configuration
+@using FhrWasm.RatingsApi
+@using Microsoft.Extensions.Options
+@inject DistributionService distributionService
+@inject IOptions<Templates> templates
+<table>
+    <tbody>
+        @foreach (var rating in template!.Ratings!.OrderBy(x => x.Value.Position))
+        {
+            <tr>
+                <td>@GetText(rating.Key)</td>
+                <td>@(Math.Round(GetDistributionRating(rating.Key), 1))%</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+    string GetText(string key) => template?.Ratings?[key].Display ?? key;
+    decimal GetDistributionRating(string key) => ratings!.ContainsKey(key) ? ratings[key].AsPercent() : 0;
+    Template? template;
+    Dictionary<string, decimal> ratings;
+    [Parameter] public Authority Authority { get; set; }
+    protected override async Task OnParametersSetAsync()
+    {
+        ratings = await distributionService.GetRatings(Authority.Id);
+
+
+        if (template != null && template.SchemeName == Authority.SchemeType.ToString())
+        {
+            return;
+        }
+
+        template = templates.Value[Authority.SchemeType.ToString()];
+    }
+}

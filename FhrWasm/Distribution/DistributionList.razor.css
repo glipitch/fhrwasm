@@ -1,0 +1,18 @@
+﻿img {
+    height: 3rem;
+}
+
+tr {
+    height: 5rem;
+}
+
+td {
+    min-width: 10rem;
+    font-size: 2rem;
+    text-align:center;
+}
+table {
+    display: flex;
+    justify-content: center;
+    padding:2rem;
+}

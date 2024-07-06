@@ -1,0 +1,46 @@
+﻿@page "/"
+@namespace FhrWasm
+@using FhrWasm.Distribution
+@using FhrWasm.RatingsApi
+@inject RatingsApiService fsaClient
+
+<PageTitle>@authority?.Name</PageTitle>
+<h1>Food Agency Data Summarizer.</h1>
+@if (authorities is not null)
+{
+    <span>Select an authority</span>
+    <select onchange=@(AuthoritySelected) autofocus>
+        @foreach (var authority in authorities)
+        {
+            <option value="@authority.Id">@authority.Name</option>
+        }
+    </select>
+}
+@if (authority is not null)
+{
+    <DistributionList Authority="@authority" />
+}
+@code {
+    
+    private Authority? authority;
+    private IEnumerable<Authority> authorities = [];
+    private async Task AuthoritySelected(ChangeEventArgs e)
+    {
+        if (e?.Value is null || !int.TryParse(e.Value.ToString(), out int id))
+        {
+            return;
+        }
+    
+        authority = authorities.Single(a => a.Id == id);
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        authorities = await fsaClient.GetAuthorities();
+        if (authorities.Count() > 0)
+        {
+            authority = authorities.First();
+            
+            
+        }
+    }
+}
