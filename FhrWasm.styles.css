@@ -1,19 +1,17 @@
 /* /View/AuthoritiesDropdown.razor.rz.scp.css */
 select[b-yar7jum7n4] {
     font-size: 1.5rem;
-    background: inherit;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--color);
 }
 
 option[b-yar7jum7n4] {
-    color: white;
-    background: inherit;
-    appearance: none;
-    background-color: dimgray;
+    color: var(--color);
+    background-color: var(--background-color);
 }
 /* /View/DistributionList.razor.rz.scp.css */
 tr[b-rdtcnagmsq] {
-    height: 5rem;
+    height: 3rem;
 }
 
 td[b-rdtcnagmsq] {
@@ -29,7 +27,7 @@ td[b-rdtcnagmsq] {
     }
 /* /View/Home.razor.rz.scp.css */
 .container[b-8cj9ipbowy] {
-    max-width: 50rem;
+    max-width: 70vw;
     margin: 1rem;
     display: flex;
     flex-direction: column;
