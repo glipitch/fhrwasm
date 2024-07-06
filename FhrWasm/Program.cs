@@ -1,4 +1,5 @@
 using FhrWasm;
+using FhrWasm.View;
 
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

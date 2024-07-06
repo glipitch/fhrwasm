@@ -1,10 +1,7 @@
-
-html,
 body {
+    display: flex;
     font-family: 'Roboto', sans-serif;
     background-color: dimgrey;
-    display: flex;
     justify-content: center;
-    text-align: center;
-    color: #fff;
+    color: white;
 }
