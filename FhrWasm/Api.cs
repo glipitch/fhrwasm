@@ -1,8 +1,12 @@
-﻿using System.Text.Json;
+﻿
 
-namespace FhrWasm.RatingsApi;
+using FhrWasm.Model;
 
-public class RatingsApiService(IHttpClientFactory httpClientFactory) 
+using System.Text.Json;
+
+namespace FhrWasm;
+
+public class Api(IHttpClientFactory httpClientFactory)
 {
     public async Task<IEnumerable<Authority>> GetAuthorities()
     {
@@ -15,6 +19,15 @@ public class RatingsApiService(IHttpClientFactory httpClientFactory)
         var root = await GetFsaResource<EstablishmentsRoot>($"establishments?localauthorityid={authorityId}");
 
         return root.Establishments;
+    }
+    public async Task<Dictionary<string, decimal>> GetRatings(int authorityId)
+    {
+        var establishments = await GetEstablishments(authorityId);
+        var totalCount = establishments.Count();
+        var groupedByRating = establishments.GroupBy(establishment => establishment.RatingValue);
+
+        return groupedByRating
+            .ToDictionary(group => group.Key, group => ((decimal)group.Count()).AsFractionOf(totalCount));
     }
 
     private async Task<T> GetFsaResource<T>(string path)

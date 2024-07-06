@@ -1,0 +1,26 @@
+
+@if (Authorities is not null)
+{
+    <select onchange="@((ChangeEventArgs e)=> OnChange(e))" autofocus>
+        @foreach (var authority in Authorities)
+        {
+            <option value="@authority.Id">@authority.Name</option>
+        }
+    </select>
+}
+@code {
+    [Parameter] public IEnumerable<Authority>? Authorities { get; set; }
+    private async Task OnChange(ChangeEventArgs? e)
+    {
+        if (e?.Value is null || !int.TryParse(e.Value.ToString(), out int id))
+        {
+            return;
+        }
+
+        var authority = Authorities?.SingleOrDefault(a => a.Id == id);
+        await Selected.InvokeAsync(authority);
+
+    }
+    [Parameter]
+    public EventCallback<Authority?> Selected { get; set; }
+}

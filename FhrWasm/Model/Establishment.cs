@@ -1,3 +1,3 @@
-﻿namespace FhrWasm.RatingsApi;
+﻿namespace FhrWasm.Model;
 
 public record Establishment(string RatingValue);

@@ -1,9 +1,5 @@
-@namespace FhrWasm.RatingsApi
-@using FhrWasm.Distribution
-@using FhrWasm.Distribution.Configuration
-@using FhrWasm.RatingsApi
-@using Microsoft.Extensions.Options
-@inject DistributionService distributionService
+@using FhrWasm.Model.Configuration
+@inject Api api
 @inject IOptions<Templates> templates
 <table>
     <tbody>
@@ -22,16 +18,14 @@
     Template? template;
     Dictionary<string, decimal> ratings;
     [Parameter] public Authority Authority { get; set; }
+    SchemeTypes previous;
     protected override async Task OnParametersSetAsync()
     {
-        ratings = await distributionService.GetRatings(Authority.Id);
-
-
-        if (template != null && template.SchemeName == Authority.SchemeType.ToString())
+        ratings = await api.GetRatings(Authority.Id);
+        if (template == null || previous != Authority.SchemeType)
         {
-            return;
+            template = templates.Value[Authority.SchemeType];
         }
-
-        template = templates.Value[Authority.SchemeType.ToString()];
+        previous = Authority.SchemeType;
     }
 }

@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject Api api
+<PageTitle>@authority?.Name</PageTitle>
+<h1>Food Agency Data Summarizer.</h1>
+@if (authorities is not null)
+{
+    <span>Select an authority</span>
+    <AuthoritiesDropdown Authorities="authorities" Selected="@(value=>authority=value)"></AuthoritiesDropdown>
+}
+@if (authority is not null)
+{
+    <DistributionList Authority="@authority" />
+}
+@code {
+    private Authority? authority;
+    private IEnumerable<Authority>? authorities;
+    protected override async Task OnInitializedAsync()
+    {
+        authorities = await api.GetAuthorities();
+        authority = authorities?.FirstOrDefault();
+    }
+}

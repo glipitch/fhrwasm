@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FhrWasm.RatingsApi
+namespace FhrWasm.Model
 {
     public record Authority
     {

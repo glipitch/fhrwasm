@@ -1,4 +1,4 @@
-﻿namespace FhrWasm.RatingsApi
+﻿namespace FhrWasm.Model
 {
     public enum SchemeTypes
     {
