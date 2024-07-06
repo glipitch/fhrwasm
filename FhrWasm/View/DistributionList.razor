@@ -16,12 +16,12 @@
     string GetText(string key) => template?.Ratings?[key].Display ?? key;
     decimal GetDistributionRating(string key) => ratings!.ContainsKey(key) ? ratings[key].AsPercent() : 0;
     Template? template;
-    Dictionary<string, decimal> ratings;
-    [Parameter] public Authority Authority { get; set; }
+    Dictionary<string, decimal>? ratings;
+    [Parameter] public Authority? Authority { get; set; }
     SchemeTypes previous;
     protected override async Task OnParametersSetAsync()
     {
-        ratings = await api.GetRatings(Authority.Id);
+        ratings = await api.GetRatings(Authority!.Id);
         if (template == null || previous != Authority.SchemeType)
         {
             template = templates.Value[Authority.SchemeType];
