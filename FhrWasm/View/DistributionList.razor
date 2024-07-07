@@ -3,12 +3,15 @@
 @inject IOptions<Templates> templates
 <table>
     <tbody>
-        @foreach (var rating in template!.Ratings!.OrderBy(x => x.Value.Position))
+        @if (template is not null)
         {
-            <tr>
-                <td>@GetText(rating.Key)</td>
-                <td>@(Math.Round(GetDistributionRating(rating.Key), 1))%</td>
-            </tr>
+            @foreach (var rating in template!.Ratings!.OrderBy(x => x.Value.Position))
+            {
+                <tr>
+                    <td>@GetText(rating.Key)</td>
+                    <td>@(Math.Round(GetDistributionRating(rating.Key), 1))%</td>
+                </tr>
+            }   
         }
     </tbody>
 </table>
