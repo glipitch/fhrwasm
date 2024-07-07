@@ -6,4 +6,4 @@
 
 Data from www.food.gov.uk/uk-food-hygiene-rating-data-api
 
-https://glipitch.github.io/fhrwasm
+View https://glipitch.github.io/fhrwasm
