@@ -4,6 +4,6 @@
 - Blazor WebAssembly
 - Debouncer using Task.Delay
 
-Data from www.food.gov.uk/uk-food-hygiene-rating-data-api
+Data from https://api.ratings.food.gov.uk/help
 
 View https://glipitch.github.io/fhrwasm
