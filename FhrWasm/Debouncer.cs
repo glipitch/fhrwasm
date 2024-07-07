@@ -1,7 +1,7 @@
 ﻿namespace FhrWasm;
 public class Debouncer<T>(Action<T> action, int delay = 200)
 {
-    CancellationTokenSource? source = null;
+    CancellationTokenSource? source;
     public void Debounce(T value)
     {
         source?.Cancel();
