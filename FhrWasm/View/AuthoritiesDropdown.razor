@@ -20,5 +20,5 @@
         var authority = Authorities?.SingleOrDefault(a => a.Id == id);
         Selected.InvokeAsync(authority);
     }
-    protected override void OnInitialized() => debouncer = new(args => OnChange(args),100);
+    protected override void OnInitialized() => debouncer = new(args => OnChange(args));
 }
