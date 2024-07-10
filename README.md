@@ -6,4 +6,4 @@
 
 Data from https://api.ratings.food.gov.uk/help
 
-View https://glipitch.github.io/fhrwasm
+Demo https://glipitch.github.io/fhrwasm
